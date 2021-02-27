@@ -16,6 +16,8 @@ _Ignore the Creating new application section since it has already been created_
 
 Once the prerequisites has been installed do the following:
 
+Use text editor of your choice
+
 _Make sure that you are currently in the schedulerApp directory_
 
 Step 1: Start Metro (js bundler used to compile)
@@ -46,8 +48,8 @@ TBD
 
 ## Built With
 
-- [React Native](http://www.dropwizard.io/1.0.2/docs/) - The framework used (React Native CLI)
-- [Node npm](https://maven.apache.org/) - Dependency Management
+- [React Native](https://reactnative.dev/) - The framework used (React Native CLI)
+- [Node npm](https://www.npmjs.com/package/node) - Dependency Management
 
 ## Versioning
 
