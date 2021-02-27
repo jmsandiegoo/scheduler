@@ -9,6 +9,7 @@ These instructions will get you a copy of the project up and running on your loc
 ### Prerequisites
 
 Refer to react native [environment-setup documentation](https://reactnative.dev/docs/environment-setup)
+
 _Ignore the Creating new application section since it has already been created_
 
 ### Locally Start the App
