@@ -1,0 +1,13 @@
+# Rules
+-
+> very 24hr must have at least 7 hours of consistent break (CONSISTENT BREAK) 
+
+> Total 12 hrs of work and 12 hours of rest in a day (TOTAL BREAK)
+
+> (*So the 12hr mandatory break must have a 6hr continuous break) 
+
+> After 3hr sentry... Cannot prowl immediately... Must rest for at least 30mins... Example 5pm to 8pm sentry then cannot prowl immediately at 8pm... Can only prowl at 8:30pm
+
+# Ideas
+-
+> Use an array with all the shifts inside (sentry and prowl) 
