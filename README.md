@@ -9,11 +9,14 @@ These instructions will get you a copy of the project up and running on your loc
 ### Prerequisites
 
 Refer to react native [environment-setup documentation](https://reactnative.dev/docs/environment-setup)
+
 _Ignore the Creating new application section since it has already been created_
 
 ### Locally Start the App
 
 Once the prerequisites has been installed do the following:
+
+Use text editor of your choice
 
 _Make sure that you are currently in the schedulerApp directory_
 
@@ -45,8 +48,8 @@ TBD
 
 ## Built With
 
-- [React Native](http://www.dropwizard.io/1.0.2/docs/) - The framework used (React Native CLI)
-- [Node npm](https://maven.apache.org/) - Dependency Management
+- [React Native](https://reactnative.dev/) - The framework used (React Native CLI)
+- [Node npm](https://www.npmjs.com/package/node) - Dependency Management
 
 ## Versioning
 
