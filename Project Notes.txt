@@ -1,6 +1,6 @@
 # Rules
 -
-> very 24hr must have at least 7 hours of consistent break (CONSISTENT BREAK) 
+> Every 24hr must have at least 7 hours of consistent break (CONSISTENT BREAK) 
 
 > Total 12 hrs of work and 12 hours of rest in a day (TOTAL BREAK)
 
@@ -8,6 +8,26 @@
 
 > After 3hr sentry... Cannot prowl immediately... Must rest for at least 30mins... Example 5pm to 8pm sentry then cannot prowl immediately at 8pm... Can only prowl at 8:30pm
 
-# Ideas
+# Ideas Algorithm
 -
 > Use an array with all the shifts inside (sentry and prowl) 
+
+# Must Have Features
+
+- Plan a duty schedule according to the rules provided above. Would be good to do for RG camps as well 
+    - When planning the schedule user can tweak the settings (or set up form) to fit the team's use case
+    - Factors
+        - Number of combatants
+        - Minimum hours of consistent break
+        - Total work and break hours
+        - Mandatory rest after sentry or prowling
+
+- Alarm System that would remind the guard com of the upcoming duty
+
+- How about service troopers schedule?
+
+# Advance features (Good to have)
+- Maybe a team based functionality (each member would have an account)
+    - User can create his own team and the team would be sharing one schedule. The user can then assign the members into the sched and share it to each members via the app
+    - With this each team member would be notified whenever its time to do duty.
+    - Any updates made by the guard com regarding the sched would reflect in eacher member's app 
