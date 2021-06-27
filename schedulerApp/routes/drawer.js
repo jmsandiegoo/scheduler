@@ -2,6 +2,7 @@ import React from 'react';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import HomeStack from './homeStack';
 import ScheduleStack from './scheduleStack';
+import Settings from '../screens/settings';
 
 const RootDrawerNavigator = createDrawerNavigator();
 
@@ -13,6 +14,7 @@ export default function DrawerNavigator() {
         name="ScheduleStack"
         component={ScheduleStack}
       />
+      <RootDrawerNavigator.Screen name="Settings" component={Settings} />
     </RootDrawerNavigator.Navigator>
   );
 }
