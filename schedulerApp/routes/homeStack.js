@@ -3,6 +3,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import Home from '../screens/home/home';
 import ModifyMount from '../screens/home/modifyMount';
 import {navOptions} from '../styles/global';
+import HamburgerButton from '../components/hamburgerButton';
 
 const Stack = createStackNavigator();
 
@@ -12,7 +13,10 @@ export default function HomeStack() {
       <Stack.Screen
         name="Home"
         component={Home}
-        options={{title: 'MOUNT DATES'}}
+        options={{
+          title: 'MOUNT DATES',
+          headerLeft: (props) => <HamburgerButton props={props} />,
+        }}
       />
       <Stack.Screen
         name="ModifyMount"
