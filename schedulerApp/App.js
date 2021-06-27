@@ -5,7 +5,7 @@
  * @format
  * @flow strict-local
  */
-
+import 'react-native-gesture-handler';
 import React from 'react';
 import {SafeAreaView, StatusBar} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
@@ -14,7 +14,7 @@ import DrawerNavigator from './routes/drawer';
 export default function App() {
   return (
     <>
-      <StatusBar barStyle="light-content" />
+      <StatusBar barStyle="default" />
       <SafeAreaView style={{flex: 1}}>
         <NavigationContainer>
           <DrawerNavigator />
