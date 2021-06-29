@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "855739135837",
+    "project_id": "scheduler-cf64f",
+    "storage_bucket": "scheduler-cf64f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:855739135837:android:a048ffb20a2f6901291ab4",
+        "android_client_info": {
+          "package_name": "com.schedulerapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "855739135837-io3r6i9kl9o5almbkh7kasj1agrioc3i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBwO2_h1z_vmcP242IcZkHh_cz5D11jBM8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "855739135837-io3r6i9kl9o5almbkh7kasj1agrioc3i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
