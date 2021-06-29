@@ -6,12 +6,48 @@
  * @flow strict-local
  */
 import 'react-native-gesture-handler';
-import React from 'react';
+import React, {useState, useEffect} from 'react';
+import auth from '@react-native-firebase/auth';
 import {SafeAreaView, StatusBar} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import DrawerNavigator from './routes/drawer';
+import LoginStack from './routes/loginStack';
 
 export default function App() {
+  // Set an initializing state while Firebase connects
+  const [initializing, setInitializing] = useState(true);
+  const [user, setUser] = useState();
+
+  // Handle user state change
+  function onAuthStateChanged(user) {
+    setUser(user);
+    if (initializing) {
+      setInitializing(false);
+    }
+  }
+
+  useEffect(() => {
+    const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+    return subscriber;
+  });
+
+  if (initializing) {
+    return null;
+  }
+
+  if (!user) {
+    return (
+      <>
+        <StatusBar barStyle="default" />
+        <SafeAreaView style={{flex: 1}}>
+          <NavigationContainer>
+            <LoginStack />
+          </NavigationContainer>
+        </SafeAreaView>
+      </>
+    );
+  }
+
   return (
     <>
       <StatusBar barStyle="default" />
