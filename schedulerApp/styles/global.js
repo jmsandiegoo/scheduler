@@ -14,6 +14,22 @@ export const globalStyles = StyleSheet.create({
     marginVertical: 8,
     lineHeight: 20,
   },
+
+  fabTouchableOpacityStyle: {
+    position: 'absolute',
+    width: 25,
+    height: 25,
+    alignItems: 'center',
+    justifyContent: 'center',
+    right: 30,
+    bottom: 30,
+  },
+
+  fabStyle: {
+    resizeMode: 'contain',
+    width:   50,
+    height: 50,
+  }
 });
 
 export const navOptions = {
