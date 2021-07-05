@@ -27,9 +27,12 @@ export const globalStyles = StyleSheet.create({
 
   fabStyle: {
     resizeMode: 'contain',
-    width:   50,
+    width: 50,
     height: 50,
-  }
+  },
+  input: {
+    borderWidth: 1,
+  },
 });
 
 export const navOptions = {
@@ -40,7 +43,7 @@ export const navOptions = {
   headerTintColor: '#FFF',
   headerTitleStyle: {
     textTransform: 'uppercase',
-    color: '#FF3D00',
+    color: '#FF6231',
   },
   headerTitleAlign: 'center',
 };

@@ -8,7 +8,7 @@
 import 'react-native-gesture-handler';
 import React, {useState, useEffect} from 'react';
 import auth from '@react-native-firebase/auth';
-import {SafeAreaView, StatusBar} from 'react-native';
+import {StatusBar} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import DrawerNavigator from './routes/drawer';
 import LoginStack from './routes/loginStack';
@@ -28,10 +28,12 @@ export default function App() {
 
   useEffect(() => {
     const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+    console.log(user);
     return subscriber;
   });
 
   if (initializing) {
+    console.log(initializing);
     return null;
   }
 
@@ -39,23 +41,18 @@ export default function App() {
     return (
       <>
         <StatusBar barStyle="default" />
-        <SafeAreaView style={{flex: 1}}>
-          <NavigationContainer>
-            <LoginStack />
-          </NavigationContainer>
-        </SafeAreaView>
+        <NavigationContainer>
+          <LoginStack />
+        </NavigationContainer>
       </>
     );
   }
-
   return (
     <>
       <StatusBar barStyle="default" />
-      <SafeAreaView style={{flex: 1}}>
-        <NavigationContainer>
-          <DrawerNavigator />
-        </NavigationContainer>
-      </SafeAreaView>
+      <NavigationContainer>
+        <DrawerNavigator />
+      </NavigationContainer>
     </>
   );
 }
