@@ -19,6 +19,7 @@ export default function App() {
   const [user, setUser] = useState();
 
   // Handle user state change
+  // eslint-disable-next-line no-shadow
   function onAuthStateChanged(user) {
     setUser(user);
     if (initializing) {
@@ -28,12 +29,10 @@ export default function App() {
 
   useEffect(() => {
     const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
-    console.log(user);
     return subscriber;
   });
 
   if (initializing) {
-    console.log(initializing);
     return null;
   }
 
@@ -46,13 +45,14 @@ export default function App() {
         </NavigationContainer>
       </>
     );
+  } else {
+    return (
+      <>
+        <StatusBar barStyle="default" />
+        <NavigationContainer>
+          <DrawerNavigator />
+        </NavigationContainer>
+      </>
+    );
   }
-  return (
-    <>
-      <StatusBar barStyle="default" />
-      <NavigationContainer>
-        <DrawerNavigator />
-      </NavigationContainer>
-    </>
-  );
 }

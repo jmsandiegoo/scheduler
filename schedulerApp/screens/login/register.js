@@ -3,6 +3,7 @@ import {View, Text, Button, TextInput} from 'react-native';
 import {StackActions} from '@react-navigation/native';
 import {globalStyles} from '../../styles/global';
 import auth from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
 
 export default function Register({navigation}) {
   const [email, setEmail] = useState('');
@@ -14,14 +15,29 @@ export default function Register({navigation}) {
     auth()
       .createUserWithEmailAndPassword(email, password)
       .then((userCredential) => {
-        // Signed In
-        console.log('successfully registered');
         var user = userCredential.user;
-        console.log(user);
-        // navigation.reset({
-        //   index: 0,
-        //   routes: [{name: 'RegisterConfirm'}],
-        // })
+        const userData = {
+          displayName: name,
+          email: user.email,
+          photoUrl: user.photoURL,
+          emailVerified: user.emailVerified,
+        };
+        const sendEmailVerificationPromise = user.sendEmailVerification();
+        const updateUserDetailPromise = user.updateProfile({
+          displayName: name,
+        });
+        const writeToDatabasePromise = firestore()
+          .collection('users')
+          .doc(user.uid)
+          .set(userData);
+        return Promise.all([
+          sendEmailVerificationPromise,
+          updateUserDetailPromise,
+          writeToDatabasePromise,
+        ]);
+      })
+      .then(() => {
+        console.log('successfully registered');
       })
       .catch((error) => {
         console.log(error);
@@ -54,7 +70,11 @@ export default function Register({navigation}) {
         onChangeText={(value) => {
           setName(value);
         }}
-        value={name}
+        value={name
+          .toLowerCase()
+          .split(' ')
+          .map((word) => word.charAt(0).toUpperCase() + word.substring(1))
+          .join(' ')}
       />
       <Button
         title="Create Account"

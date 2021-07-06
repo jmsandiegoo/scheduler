@@ -7,7 +7,6 @@ import {
 import {globalStyles} from '../styles/global';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import auth from '@react-native-firebase/auth';
-import {NavigationContainer} from '@react-navigation/native';
 
 export default function drawerContent(props) {
   const signOut = () => {
@@ -38,7 +37,7 @@ export default function drawerContent(props) {
               props.navigation.navigate('Home');
             }}>
             <Icon name="home" size={15} color="#fff" style={styles.icon} />
-            <Text style={globalStyles.titleText}>Home</Text>
+            <Text style={globalStyles.subTitleText}>Home</Text>
           </Pressable>
           <Pressable
             style={styles.drawerItem}
@@ -51,7 +50,7 @@ export default function drawerContent(props) {
               color="#fff"
               style={styles.icon}
             />
-            <Text style={globalStyles.titleText}>Schedule</Text>
+            <Text style={globalStyles.subTitleText}>Schedule</Text>
           </Pressable>
           <Pressable
             style={styles.drawerItem}
@@ -59,7 +58,7 @@ export default function drawerContent(props) {
               props.navigation.navigate('Settings');
             }}>
             <Icon name="cog" size={15} color="#fff" style={styles.icon} />
-            <Text style={globalStyles.titleText}>Settings</Text>
+            <Text style={globalStyles.subTitleText}>Settings</Text>
           </Pressable>
           <Pressable
             style={[styles.drawerItem, styles.signOutText]}
@@ -72,7 +71,7 @@ export default function drawerContent(props) {
               color="#fff"
               style={styles.icon}
             />
-            <Text style={globalStyles.titleText}>Sign Out</Text>
+            <Text style={globalStyles.subTitleText}>Sign Out</Text>
           </Pressable>
         </View>
       </SafeAreaView>
