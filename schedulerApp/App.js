@@ -9,7 +9,7 @@ import 'react-native-gesture-handler';
 import React from 'react';
 import {SafeAreaView, StatusBar} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
-import DrawerNavigator from './routes/drawer';
+import DrawerNavigator from './src/navigation/drawer';
 
 export default function App() {
   return (
