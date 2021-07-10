@@ -2,10 +2,10 @@ import React, {useEffect, useState} from 'react';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import HomeStack from './homeStack';
 import ScheduleStack from './scheduleStack';
-import Settings from '../screens/settings';
-import VerifyEmail from '../screens/verifyEmail';
+import VerifyEmail from '../containers/verifyEmail';
 import DrawerContent from '../components/drawerContent';
 import auth from '@react-native-firebase/auth';
+import Settings from '../containers/settings';
 
 const Drawer = createDrawerNavigator();
 

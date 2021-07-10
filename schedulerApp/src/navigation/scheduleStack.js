@@ -1,27 +1,27 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
-import Home from '../screens/home/home';
-import ModifyMount from '../screens/home/modifyMount';
 import {navOptions} from '../styles/global';
+import FindMount from '../containers/schedule/findMount';
+import ViewSchedule from '../containers/schedule/viewSchedule';
 import HamburgerButton from '../components/hamburgerButton';
 
 const Stack = createStackNavigator();
 
-export default function HomeStack() {
+export default function ScheduleStack() {
   return (
     <Stack.Navigator screenOptions={{...navOptions}}>
       <Stack.Screen
-        name="Home"
-        component={Home}
+        name="FindMount"
+        component={FindMount}
         options={{
-          title: 'MOUNT DATES',
+          title: 'Find Mount',
           headerLeft: (props) => <HamburgerButton props={props} />,
         }}
       />
       <Stack.Screen
-        name="ModifyMount"
-        component={ModifyMount}
-        options={{title: 'ADD MOUNT'}}
+        name="ViewSchedule"
+        component={ViewSchedule}
+        options={{title: 'MOUNT SCHEDULE'}}
       />
     </Stack.Navigator>
   );

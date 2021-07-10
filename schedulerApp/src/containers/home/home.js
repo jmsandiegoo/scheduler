@@ -10,7 +10,9 @@ export default function Home({navigation}) {
 
       <CalendarList
         // Callback which gets executed when visible months change in scroll view. Default = undefined
-        // onVisibleMonthsChange={(months) => {console.log('now these months are visible', months);}}
+        // onVisibleMonthsChange={(months) => {
+        //   console.log('now these months are visible', months);
+        // }}
         // Max amount of months allowed to scroll to the past. Default = 50
         pastScrollRange={50}
         // Max amount of months allowed to scroll to the future. Default = 50
@@ -35,7 +37,7 @@ export default function Home({navigation}) {
         onPress={() => navigation.navigate('ModifyMount')}
         style={globalStyles.fabTouchableOpacityStyle}>
         <Image
-          source={require('../../images/fab_icon.png')}
+          source={require('../../assets/images/fab_icon.png')}
           style={globalStyles.fabStyle}
         />
       </TouchableOpacity>

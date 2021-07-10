@@ -1,11 +1,11 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
-import Login from '../screens/login/login';
-import Register from '../screens/login/register';
-import RegisterConfirm from '../screens/login/registerconfirm';
-import Landing from '../screens/login/landing';
-import ForgotPassword from '../screens/login/forgotPassword';
-import ResetPassword from '../screens/login/resetPassword';
+import Login from '../containers/login/login';
+import Register from '../containers/login/register';
+import RegisterConfirm from '../containers/login/registerconfirm';
+import Landing from '../containers/login/landing';
+import ForgotPassword from '../containers/login/forgotPassword';
+import ResetPassword from '../containers/login/resetPassword';
 // import {navOptions} from '../styles/global';
 
 const Stack = createStackNavigator();

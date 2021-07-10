@@ -10,8 +10,8 @@ import React, {useState, useEffect} from 'react';
 import auth from '@react-native-firebase/auth';
 import {StatusBar} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
-import DrawerNavigator from './routes/drawer';
-import LoginStack from './routes/loginStack';
+import LoginStack from './src/navigation/loginStack';
+import DrawerNavigator from './src/navigation/drawer';
 
 export default function App() {
   // Set an initializing state while Firebase connects
