@@ -12,47 +12,56 @@ import {StatusBar} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import LoginStack from './src/navigation/loginStack';
 import DrawerNavigator from './src/navigation/drawer';
+import {useDispatch, useSelector} from 'react-redux';
+import {updateUser} from './src/redux/userSlice';
 
 export default function App() {
   // Set an initializing state while Firebase connects
+  const user = useSelector((state) => state.user);
   const [initializing, setInitializing] = useState(true);
-  const [user, setUser] = useState();
-
-  // Handle user state change
-  // eslint-disable-next-line no-shadow
-  function onAuthStateChanged(user) {
-    setUser(user);
-    if (initializing) {
-      setInitializing(false);
-    }
-  }
+  const dispatch = useDispatch();
 
   useEffect(() => {
+    // eslint-disable-next-line no-shadow
+    const onAuthStateChanged = (user) => {
+      let userData = null;
+      if (user) {
+        userData = {
+          displayName: user.displayName,
+          email: user.email,
+          emailVerified: user.emailVerified,
+        };
+      }
+      dispatch(updateUser(userData));
+
+      if (initializing) {
+        setInitializing(false);
+      }
+    };
     const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
     return subscriber;
-  });
+  }, [dispatch, initializing]);
 
   if (initializing) {
     return null;
   }
 
-  if (!user) {
-    return (
-      <>
-        <StatusBar barStyle="default" />
-        <NavigationContainer>
-          <LoginStack />
-        </NavigationContainer>
-      </>
-    );
-  } else {
-    return (
-      <>
-        <StatusBar barStyle="default" />
-        <NavigationContainer>
-          <DrawerNavigator />
-        </NavigationContainer>
-      </>
-    );
-  }
+  return (
+    <>
+      <StatusBar barStyle="default" />
+      {!user ? (
+        <>
+          <NavigationContainer>
+            <LoginStack />
+          </NavigationContainer>
+        </>
+      ) : (
+        <>
+          <NavigationContainer>
+            <DrawerNavigator />
+          </NavigationContainer>
+        </>
+      )}
+    </>
+  );
 }

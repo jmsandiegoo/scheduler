@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   StyleSheet,
   View,
@@ -12,6 +12,9 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {globalStyles} from '../styles/global';
 
 export default function RegisterConfirm({navigation}) {
+  const [timer, setTimer] = useState(60);
+  const [isCounting, setIsCounting] = useState(false);
+
   const signOut = () => {
     auth()
       .signOut()
@@ -22,6 +25,18 @@ export default function RegisterConfirm({navigation}) {
         console.log(error);
       });
   };
+  const countDown = () => {
+    setIsCounting(true);
+    if (timer <= 0) {
+      setIsCounting(false);
+      return;
+    }
+    setTimer(timer - 1);
+  };
+  useEffect(() => {
+    const timeOut = setTimeout(countDown, 1000);
+    return clearTimeout(timeOut);
+  });
 
   return (
     <View style={globalStyles.container}>
@@ -45,6 +60,8 @@ export default function RegisterConfirm({navigation}) {
         <Text style={[styles.text, styles.centerText]}>
           {'Please verify email to \n complete account creation'}
         </Text>
+        <Text>{isCounting}</Text>
+        <Text>{timer}</Text>
         <Pressable style={styles.primaryButton}>
           <Text style={[globalStyles.text, styles.centerText]}>
             Resend Email
