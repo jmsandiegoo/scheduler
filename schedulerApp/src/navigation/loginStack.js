@@ -12,7 +12,10 @@ const Stack = createStackNavigator();
 
 export default function LoginStack() {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}>
       <Stack.Screen name="Landing" component={Landing} />
       <Stack.Screen name="Register" component={Register} />
       <Stack.Screen name="RegisterConfirm" component={RegisterConfirm} />
