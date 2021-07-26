@@ -1,14 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {
-  StyleSheet,
-  View,
-  Text,
-  Button,
-  Pressable,
-  SafeAreaView,
-  Modal,
-  ActivityIndicator,
-} from 'react-native';
+import {StyleSheet, View, Text, Pressable, SafeAreaView} from 'react-native';
 import auth from '@react-native-firebase/auth';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {globalStyles} from '../styles/global';
@@ -46,7 +37,7 @@ export default function RegisterConfirm({navigation}) {
       .currentUser.sendEmailVerification()
       .then(() => {
         setTimer(60);
-        setIsLoading({...isLoading, bool: false});
+        setIsLoading({...isLoading, value: false});
       })
       .catch((error) => {
         console.log(error);
@@ -113,20 +104,25 @@ export default function RegisterConfirm({navigation}) {
           />
           <Text style={globalStyles.headerText2}>Sign Out</Text>
         </Pressable>
-        <Text style={[styles.headerText1, styles.centerText]}>
+        <Text
+          style={[
+            styles.headerText1,
+            globalStyles.centerText,
+            globalStyles.boldText,
+          ]}>
           Check Your Mail
         </Text>
-        <Text style={[styles.text, styles.centerText]}>
+        <Text style={[styles.text, globalStyles.centerText]}>
           {'Please verify email to \n complete account creation'}
         </Text>
-        <Text style={[globalStyles.text, styles.centerText]}>
+        <Text style={[globalStyles.text, globalStyles.centerText]}>
           {formatTime()}
         </Text>
         <Pressable
           style={[styles.primaryButton, isCounting ? styles.disabled : '']}
           disabled={isCounting}
           onPress={() => resendEmail()}>
-          <Text style={[globalStyles.text, styles.centerText]}>
+          <Text style={[globalStyles.text, globalStyles.centerText]}>
             Resend Email
           </Text>
         </Pressable>
@@ -134,13 +130,13 @@ export default function RegisterConfirm({navigation}) {
           <Text
             style={[
               globalStyles.text,
-              styles.centerText,
-              styles.underlineText,
+              globalStyles.centerText,
+              globalStyles.underlineText,
             ]}>
             Already Verified
           </Text>
         </Pressable>
-        <Text style={[styles.smallText, styles.centerText]}>
+        <Text style={[styles.smallText, globalStyles.centerText]}>
           {'*Unverified accounts will be deleted within an hour'}
         </Text>
       </SafeAreaView>
@@ -168,12 +164,6 @@ const styles = StyleSheet.create({
     width: '100%',
     alignSelf: 'center',
     ...globalStyles.primaryButton,
-  },
-  centerText: {
-    textAlign: 'center',
-  },
-  underlineText: {
-    textDecorationLine: 'underline',
   },
   signOutText: {
     position: 'absolute',

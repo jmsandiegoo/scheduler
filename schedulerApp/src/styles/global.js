@@ -2,7 +2,6 @@ import {StyleSheet} from 'react-native';
 
 const variables = {
   headerText: {
-    textTransform: 'uppercase',
     color: '#D1D3D8',
   },
 };
@@ -19,15 +18,17 @@ export const globalStyles = StyleSheet.create({
   },
   headerText1: {
     fontSize: 30,
-    marginVertical: 10,
-    fontWeight: 'bold',
     ...variables.headerText,
   },
   headerText2: {
-    fontSize: 20,
+    fontSize: 22,
     ...variables.headerText,
   },
   headerText3: {
+    fontSize: 20,
+    ...variables.headerText,
+  },
+  headerText4: {
     fontSize: 20,
     ...variables.headerText,
   },
@@ -40,9 +41,27 @@ export const globalStyles = StyleSheet.create({
     fontSize: 12,
     color: '#FFF',
   },
+  centerText: {
+    textAlign: 'center',
+  },
+  underlineText: {
+    textDecorationLine: 'underline',
+  },
+  boldText: {
+    fontWeight: 'bold',
+  },
   primaryButton: {
     backgroundColor: '#FF6231',
     borderRadius: 30,
+  },
+  textBoxContainer: {
+    margin: 5,
+  },
+  textBox: {
+    backgroundColor: '#424242',
+    borderWidth: 0.5,
+    borderColor: '#000',
+    color: '#fff',
   },
 
   fabTouchableOpacityStyle: {

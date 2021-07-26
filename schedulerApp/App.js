@@ -8,12 +8,19 @@
 import 'react-native-gesture-handler';
 import React, {useState, useEffect} from 'react';
 import auth from '@react-native-firebase/auth';
-import {StatusBar} from 'react-native';
+import {
+  StatusBar,
+  View,
+  StyleSheet,
+  TouchableWithoutFeedback,
+  Keyboard,
+} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import LoginStack from './src/navigation/loginStack';
 import DrawerNavigator from './src/navigation/drawer';
 import {useDispatch, useSelector} from 'react-redux';
 import {updateUser} from './src/redux/userSlice';
+import {globalStyles} from './src/styles/global';
 
 export default function App() {
   // Set an initializing state while Firebase connects
@@ -49,19 +56,30 @@ export default function App() {
   return (
     <>
       <StatusBar barStyle="default" />
-      {!user ? (
-        <>
-          <NavigationContainer>
-            <LoginStack />
-          </NavigationContainer>
-        </>
-      ) : (
-        <>
-          <NavigationContainer>
-            <DrawerNavigator />
-          </NavigationContainer>
-        </>
-      )}
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+        <View style={[styles.container]}>
+          {!user ? (
+            <>
+              <NavigationContainer theme={{colors: {background: '#1B1B1B'}}}>
+                <LoginStack />
+              </NavigationContainer>
+            </>
+          ) : (
+            <>
+              <NavigationContainer theme={{colors: {background: '#1B1B1B'}}}>
+                <DrawerNavigator />
+              </NavigationContainer>
+            </>
+          )}
+        </View>
+      </TouchableWithoutFeedback>
     </>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    ...globalStyles.container,
+    padding: 0,
+  },
+});

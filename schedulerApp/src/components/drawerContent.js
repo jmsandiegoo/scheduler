@@ -1,9 +1,6 @@
 import React from 'react';
 import {StyleSheet, View, Text, Pressable, SafeAreaView} from 'react-native';
-import {
-  DrawerContentScrollView,
-  DrawerItemList,
-} from '@react-navigation/drawer';
+import {DrawerContentScrollView} from '@react-navigation/drawer';
 import {globalStyles} from '../styles/global';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import auth from '@react-native-firebase/auth';
@@ -24,11 +21,11 @@ export default function drawerContent(props) {
       contentContainerStyle={globalStyles.container}
       style={globalStyles.container}>
       {/* Header */}
-      <SafeAreaView style={{flex: 1}}>
+      <SafeAreaView style={globalStyles.safeAreaView}>
         <View style={styles.drawerHeaderSection}>
           <Text style={styles.headerText}>ST SCHEDULER APP</Text>
-          <Text style={styles.userNameText}>User Name</Text>
-          <Text style={styles.emailText}>user@email.com</Text>
+          <Text style={styles.userNameText}>{props.user.displayName}</Text>
+          <Text style={styles.emailText}>{props.user.email}</Text>
         </View>
         <View style={styles.drawerItemContainer}>
           <Pressable
@@ -37,7 +34,7 @@ export default function drawerContent(props) {
               props.navigation.navigate('Home');
             }}>
             <Icon name="home" size={15} color="#fff" style={styles.icon} />
-            <Text style={globalStyles.subTitleText}>Home</Text>
+            <Text style={styles.subTitleText}>Home</Text>
           </Pressable>
           <Pressable
             style={styles.drawerItem}
@@ -50,7 +47,7 @@ export default function drawerContent(props) {
               color="#fff"
               style={styles.icon}
             />
-            <Text style={globalStyles.subTitleText}>Schedule</Text>
+            <Text style={styles.subTitleText}>Schedule</Text>
           </Pressable>
           <Pressable
             style={styles.drawerItem}
@@ -58,7 +55,7 @@ export default function drawerContent(props) {
               props.navigation.navigate('Settings');
             }}>
             <Icon name="cog" size={15} color="#fff" style={styles.icon} />
-            <Text style={globalStyles.subTitleText}>Settings</Text>
+            <Text style={styles.subTitleText}>Settings</Text>
           </Pressable>
           <Pressable
             style={[styles.drawerItem, styles.signOutText]}
@@ -71,7 +68,7 @@ export default function drawerContent(props) {
               color="#fff"
               style={styles.icon}
             />
-            <Text style={globalStyles.subTitleText}>Sign Out</Text>
+            <Text style={styles.subTitleText}>Sign Out</Text>
           </Pressable>
         </View>
       </SafeAreaView>
@@ -118,5 +115,8 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 0,
     width: '100%',
+  },
+  subTitleText: {
+    color: '#fff',
   },
 });
