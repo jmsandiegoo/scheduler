@@ -1,6 +1,5 @@
 import React, { useState, Component } from 'react';
-import { StyleSheet, Text, View, TextInput, Button, State, Pressable, Image } from 'react-native';
-
+import { StyleSheet, Text, View, TextInput, Button, State, Pressable, Image, Alert, TouchableOpacity, TouchableHighlight } from 'react-native';
 class CustomCalendar extends Component {
     months = ["January", "February", "March", "April", "May", "June", "July", "August", 
               "September", "October", "November", "December"];
@@ -9,9 +8,18 @@ class CustomCalendar extends Component {
 
     nDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
-    state = {
-        activeDate: new Date()
-    }
+    constructor(props) {
+        super(props);
+        this.state = {
+          activeDate: new Date(),
+          pressedOrNot: 0,
+          pressedItem: [],
+          pressedMonth: [],
+          pressedYear: [],
+        };
+
+        this.selectMount = this.selectMount.bind(this)
+      }
 
     generateMatrix() {
         var matrix = [];
@@ -60,44 +68,166 @@ class CustomCalendar extends Component {
         });
     }
 
+    selectMount = (rowIndex,month,year) => {
+        this.setState(prevState => ({
+            pressedOrNot: !prevState.pressedOrNot,
+        }));
+
+        this.setState({ pressedItem: rowIndex });
+        this.setState({ pressedMonth: month });
+        this.setState({ pressedYear: year });
+        
+        //Alert.alert(rowIndex.toString());
+    }
+
     render() {
         var matrix = this.generateMatrix();
-
         var rows = [];
+
+        var currDay = new Date().getDate();
+        var currMonth = new Date().getMonth() + 1;
+        var currYear = new Date().getFullYear();
+            
         rows = matrix.map((row, rowIndex) => {
-        var rowItems = row.map((item, colIndex) => {
+            //if that item has not been pressed (not a mount day!)
+            if(this.state.pressedOrNot == false) { 
+                //if current month and current year... then do this...
+                if((this.state.activeDate.getMonth()+1) == currMonth && this.state.activeDate.getFullYear() == currYear) {
+                    var rowItems = row.map((item, colIndex) => {
+                        return (
+                            <Text
+                                style={{
+                                    flex: 1,
+                                    height: 50,
+                                    textAlign: 'center',
+                                    padding: 10,
+                                    backgroundColor: '#1b1b1b',
+                                    color: item == this.state.activeDate.getDate() ? '#19afe6' : '#aaa',
+                                    fontWeight: item == this.state.activeDate.getDate() ? 'bold' : '',
+                                }}
+                            onPress={this.selectMount.bind(rowIndex,item,this.state.activeDate.getMonth()+1,this.state.activeDate.getFullYear())}>
+                            {item != -1 ? item : ''}
+                            </Text>
+                        );
+                    });
+                }
+                //if not current month and not current year... then do this... 
+                else {
+                    var rowItems = row.map((item, colIndex) => {
+                        return (
+                            <Text
+                                style={{
+                                    flex: 1,
+                                    height: 50,
+                                    textAlign: 'center',
+                                    padding: 10,
+                                    backgroundColor: '#1b1b1b',
+                                    color: '#aaa',
+                                }}
+                                onPress={this.selectMount.bind(rowIndex,item,this.state.activeDate.getMonth()+1,this.state.activeDate.getFullYear())}>
+                                {item != -1 ? item : ''}
+                            </Text>
+                        );
+                    });
+                }
+            //if that item has been pressed (mount day)
+            } else {
+                //if pressed item is from the currently displayed month and year (if this if statement is not here... the pressed day will repeat for every month of every year!)...
+                if(this.state.pressedMonth == this.state.activeDate.getMonth()+1 && this.state.pressedYear == this.state.activeDate.getFullYear()) {
+                    //if current month and current year... then do this...
+                    if((this.state.activeDate.getMonth()+1) == currMonth && this.state.activeDate.getFullYear() == currYear) {
+                        var rowItems = row.map((item, colIndex) => {
+                            return (
+                                <Text
+                                    style={{
+                                        flex: 1,
+                                        height: 50,
+                                        textAlign: 'center',
+                                        padding: 10,
+                                        backgroundColor: item == this.state.pressedItem ? '#EB5757' : '#1b1b1b',
+                                        color: item == this.state.activeDate.getDate() ? '#19afe6' : item == this.state.pressedItem ? '#000' : '#aaa',
+                                        fontWeight: item == this.state.activeDate.getDate() ? 'bold' : '',
+                                    }}
+                                onPress={this.selectMount.bind(rowIndex,item,this.state.activeDate.getMonth()+1,this.state.activeDate.getFullYear())}>
+                                {item != -1 ? item : ''}
+                                </Text>
+                            );
+                        });
+                    }
+                    //if not current month and not current year... then do this... 
+                    else {
+                        var rowItems = row.map((item, colIndex) => {
+                            return (
+                                <Text
+                                    style={{
+                                        flex: 1,
+                                        height: 50,
+                                        textAlign: 'center',
+                                        padding: 10,
+                                        backgroundColor: item == this.state.pressedItem ? '#EB57576' : '#1b1b1b',
+                                        color: '#000',
+                                    }}
+                                    onPress={this.selectMount.bind(rowIndex,item,this.state.activeDate.getMonth()+1,this.state.activeDate.getFullYear())}>
+                                    {item != -1 ? item : ''}
+                                </Text>
+                            );
+                        });
+                    }
+                //if pressed item is not from the currently displayed month and year...
+                } else {
+                    //if current month and current year... then do this...
+                    if((this.state.activeDate.getMonth()+1) == currMonth && this.state.activeDate.getFullYear() == currYear) {
+                        var rowItems = row.map((item, colIndex) => {
+                            return (
+                                <Text
+                                    style={{
+                                        flex: 1,
+                                        height: 50,
+                                        textAlign: 'center',
+                                        padding: 10,
+                                        backgroundColor: '#1b1b1b',
+                                        color: item == this.state.activeDate.getDate() ? '#19afe6' : '#aaa',
+                                        fontWeight: item == this.state.activeDate.getDate() ? 'bold' : '',
+                                    }}
+                                onPress={this.selectMount.bind(rowIndex,item,this.state.activeDate.getMonth()+1,this.state.activeDate.getFullYear())}>
+                                {item != -1 ? item : ''}
+                                </Text>
+                            );
+                        });
+                    }
+                    //if not current month and not current year... then do this... 
+                    else {
+                        var rowItems = row.map((item, colIndex) => {
+                            return (
+                                <Text
+                                    style={{
+                                        flex: 1,
+                                        height: 50,
+                                        textAlign: 'center',
+                                        padding: 10,
+                                        backgroundColor: '#1b1b1b',
+                                        color: '#aaa',
+                                    }}
+                                    onPress={this.selectMount.bind(rowIndex,item,this.state.activeDate.getMonth()+1,this.state.activeDate.getFullYear())}>
+                                    {item != -1 ? item : ''}
+                                </Text>
+                            );
+                        });
+                    }
+                }
+            }
+
             return (
-            <Text
-                style={{
-                    flex: 1,
-                    height: 50,
-                    textAlign: 'center',
-                    padding: 10,
-                    backgroundColor: '#1B1B1B',
-                    color: '#aaa',
-                    // Highlight header
-                    //backgroundColor: rowIndex == 0 ? '#ddd' : '#fff',
-                    // Highlight Sundays
-                    //color: colIndex == 0 ? '#a00' : '#000',
-                    // Highlight current date
-                    //fontWeight: item == this.state.activeDate.getDate() ? 'bold': ''
-                }}
-                >
-                {item != -1 ? item : ''}
-            </Text>
+                <View
+                    style={{
+                        flex: 1,
+                        flexDirection: 'row',
+                        justifyContent: 'space-around',
+                        alignItems: 'center',
+                    }}>
+                    {rowItems}
+                </View>
             );
-        });
-        return (
-            <View
-                style={{
-                    flex: 1,
-                    flexDirection: 'row',
-                    justifyContent: 'space-around',
-                    alignItems: 'center',
-                }}>
-                {rowItems}
-            </View>
-        );
         });
         
         return(
