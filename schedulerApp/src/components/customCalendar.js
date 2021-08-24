@@ -95,6 +95,11 @@ class CustomCalendar extends Component {
             Alert.alert(this.state.pressedItem.find((value) => value == 25).toString());*/
     }
 
+    openOptionsPopUp = (rowIndex,month,year) => {
+        if(this.state.pressedItem.includes(rowIndex))
+            Alert.alert("open make schedule screen");
+    }
+
     render() {
         var matrix = this.generateMatrix();
         var rows = [];
@@ -120,7 +125,8 @@ class CustomCalendar extends Component {
                                     backgroundColor: this.state.pressedItem.includes(item) ? '#EB5757' : '#1b1b1b',
                                     color: item == this.state.activeDate.getDate() ? '#19afe6' : this.state.pressedItem.includes(item) ? '#000' : '#aaa',
                                 }}
-                            onPress={this.selectMount.bind(rowIndex,item,this.state.activeDate.getMonth()+1,this.state.activeDate.getFullYear())}>
+                            onPress={this.selectMount.bind(rowIndex,item,this.state.activeDate.getMonth()+1,this.state.activeDate.getFullYear())}
+                            onLongPress={this.openOptionsPopUp.bind(rowIndex,item,this.state.activeDate.getMonth()+1,this.state.activeDate.getFullYear())}>
                             {item != -1 ? item : ''}
                             </Text>
                         );
@@ -140,7 +146,8 @@ class CustomCalendar extends Component {
                                     backgroundColor: this.state.pressedItem.includes(item) ? '#EB5757' : '#1b1b1b', 
                                     color: this.state.pressedItem.includes(item) ? '#000' : '#aaa',
                                 }}
-                                onPress={this.selectMount.bind(rowIndex,item,this.state.activeDate.getMonth()+1,this.state.activeDate.getFullYear())}>
+                                onPress={this.selectMount.bind(rowIndex,item,this.state.activeDate.getMonth()+1,this.state.activeDate.getFullYear())}
+                                onLongPress={this.openOptionsPopUp.bind(rowIndex,item,this.state.activeDate.getMonth()+1,this.state.activeDate.getFullYear())}>
                                 {item != -1 ? item : ''}
                             </Text>
                         );
@@ -162,7 +169,8 @@ class CustomCalendar extends Component {
                                     backgroundColor: this.state.pressedItem.includes(item) ? '#EB5757' : '#1b1b1b', 
                                     color: item == this.state.activeDate.getDate() ? '#19afe6' : this.state.pressedItem.includes(item) ? '#000' : '#aaa',
                                 }}
-                            onPress={this.selectMount.bind(rowIndex,item,this.state.activeDate.getMonth()+1,this.state.activeDate.getFullYear())}>
+                            onPress={this.selectMount.bind(rowIndex,item,this.state.activeDate.getMonth()+1,this.state.activeDate.getFullYear())}
+                            onLongPress={this.openOptionsPopUp.bind(rowIndex,item,this.state.activeDate.getMonth()+1,this.state.activeDate.getFullYear())}>
                             {item != -1 ? item : ''}
                             </Text>
                         );
@@ -182,7 +190,8 @@ class CustomCalendar extends Component {
                                     backgroundColor: this.state.pressedItem.includes(item) ? '#EB5757' : '#1b1b1b', 
                                     color: this.state.pressedItem.includes(item) ? '#000' : '#aaa',
                                 }}
-                                onPress={this.selectMount.bind(rowIndex,item,this.state.activeDate.getMonth()+1,this.state.activeDate.getFullYear())}>
+                                onPress={this.selectMount.bind(rowIndex,item,this.state.activeDate.getMonth()+1,this.state.activeDate.getFullYear())}
+                                onLongPress={this.openOptionsPopUp.bind(rowIndex,item,this.state.activeDate.getMonth()+1,this.state.activeDate.getFullYear())}>
                                 {item != -1 ? item : ''}
                             </Text>
                         );
