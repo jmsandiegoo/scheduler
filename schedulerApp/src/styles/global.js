@@ -34,7 +34,7 @@ export const globalStyles = StyleSheet.create({
   },
   text: {
     marginVertical: 8,
-    lineHeight: 20,
+    // lineHeight: 20,
     color: '#FFF',
   },
   smallText: {

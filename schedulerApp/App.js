@@ -47,7 +47,7 @@ export default function App() {
     };
     const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
     return subscriber;
-  }, [dispatch, initializing]);
+  }, []);
 
   if (initializing) {
     return null;
